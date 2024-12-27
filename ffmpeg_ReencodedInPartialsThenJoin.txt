@@ -1,0 +1,22 @@
+# Crear alias para ffmpeg
+alias ffmpeg=/drives/c/Users/Augusto/Downloads/ffmpeg-master-latest-win64-gpl/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
+
+
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 00:00:00 -t 00:10:00 XV_Mimi_part01.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 00:10:00 -t 00:10:00 XV_Mimi_part02.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 00:20:00 -t 00:10:00 XV_Mimi_part03.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 00:30:00 -t 00:10:00 XV_Mimi_part04.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 00:40:00 -t 00:10:00 XV_Mimi_part05.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 00:50:00 -t 00:10:00 XV_Mimi_part06.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 01:00:00 -t 00:10:00 XV_Mimi_part07.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 01:10:00 -t 00:10:00 XV_Mimi_part08.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 01:20:00 -t 00:10:00 XV_Mimi_part09.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 01:30:00 -t 00:10:00 XV_Mimi_part10.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -s 01:40:00 -t 00:10:00 XV_Mimi_part11.mp4
+ffmpeg -i XV_Mimi.mov -vcodec libx265 -crf 28 -ss '01:50:00' -t '00:10:00' XV_Mimi_part12.mp4
+
+# Crear la lista de los archivos a unir
+ls -1 *part* | awk '{print "file '"'"'"$0"'"'"'"}' > filelist.txt
+
+# Unir los archivos
+ffmpeg -f concat -safe 0 -i filelist.txt -c copy XV_Mimi_Concatenated.mp4
